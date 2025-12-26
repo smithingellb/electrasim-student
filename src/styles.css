@@ -1,0 +1,545 @@
+:root {
+  --bg0: #0a0f1b;
+  --bg1: #0e1526;
+  --panel: #0b1222;
+  --panel2: #0b1328;
+  --text: #e7eefc;
+  --muted: #93a4c7;
+
+  /* ElectraSim identity: yellow/orange panel borders */
+  --accent: #f5b301; /* warm yellow */
+  --accent2: #ff7a18; /* orange */
+  --good: #28d17c;
+  --bad: #ff3b3b;
+
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --radius: 14px;
+  --radius2: 18px;
+  --line: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(
+      1200px 700px at 30% 10%,
+      rgba(245, 179, 1, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 600px at 80% 30%,
+      rgba(255, 122, 24, 0.08),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  color: var(--text);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.appRoot {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(
+    180deg,
+    rgba(10, 15, 27, 0.85),
+    rgba(10, 15, 27, 0.55)
+  );
+  backdrop-filter: blur(8px);
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.appTitle {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  font-size: 18px;
+}
+.subTitle {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.topBarRight {
+  display: flex;
+  gap: 10px;
+}
+.pillButton {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.55);
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: not-allowed;
+}
+
+.mainGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 340px 1fr 340px;
+  grid-template-rows: 1fr auto;
+  gap: 14px;
+  padding: 14px;
+}
+
+.panel {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 18, 34, 0.92),
+    rgba(11, 19, 40, 0.86)
+  );
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+.panelBorder {
+  border: 1px solid rgba(245, 179, 1, 0.55);
+  box-shadow: 0 0 0 1px rgba(255, 122, 24, 0.12) inset, var(--shadow);
+}
+
+.panelHeader {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.05));
+}
+
+.panelBody {
+  padding: 12px 14px;
+}
+
+.centerPanel {
+  min-height: 520px;
+}
+
+.bottomPanel {
+  grid-column: 1 / 4;
+}
+
+.controlGroup {
+  margin-bottom: 14px;
+}
+.controlLabel {
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.controlLabelSmall {
+  color: var(--muted);
+  font-size: 12px;
+  width: 110px;
+}
+
+.inlineRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.controlRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.slider {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.readout {
+  min-width: 62px;
+  text-align: right;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.hintText {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.divider {
+  height: 1px;
+  background: var(--line);
+  margin: 12px 0;
+}
+.divider.subtle {
+  opacity: 0.7;
+}
+
+.segmented {
+  display: flex;
+  gap: 8px;
+}
+.segmented.small .segBtn {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.segBtn {
+  flex: 1;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.15s ease,
+    border-color 0.15s ease;
+}
+.segBtn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.segBtn:active {
+  transform: translateY(1px);
+}
+.segBtn.active {
+  border-color: rgba(245, 179, 1, 0.65);
+  background: linear-gradient(
+    180deg,
+    rgba(245, 179, 1, 0.22),
+    rgba(255, 122, 24, 0.1)
+  );
+}
+
+.centerPlaceholder {
+  height: 100%;
+  min-height: 460px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  background: radial-gradient(
+      900px 500px at 40% 20%,
+      rgba(245, 179, 1, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 450px at 80% 45%,
+      rgba(255, 122, 24, 0.08),
+      transparent 60%
+    ),
+    rgba(0, 0, 0, 0.12);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.placeholderTitle {
+  font-size: 14px;
+  font-weight: 800;
+}
+.placeholderText {
+  color: var(--muted);
+  max-width: 62ch;
+  line-height: 1.45;
+  margin-top: 10px;
+  font-size: 13px;
+}
+.placeholderMiniReadouts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.miniBadge {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.rightBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.blockTitle {
+  font-weight: 800;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+.kvRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12.5px;
+}
+.kvKey {
+  color: var(--muted);
+}
+.kvVal {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.statusText {
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+.mathGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 14px;
+}
+
+.mathSteps {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+.stepLine {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.stepLine:last-child {
+  border-bottom: none;
+}
+.stepLabel {
+  color: var(--accent);
+  min-width: 60px;
+  font-weight: 800;
+}
+.stepText {
+  color: var(--text);
+  font-size: 12.8px;
+  line-height: 1.35;
+}
+
+.mathControls {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mathModeHint {
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.primaryButton,
+.secondaryButton {
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.primaryButton {
+  background: linear-gradient(
+    180deg,
+    rgba(245, 179, 1, 0.22),
+    rgba(255, 122, 24, 0.14)
+  );
+  color: rgba(255, 255, 255, 0.65);
+  cursor: not-allowed;
+}
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.55);
+  cursor: not-allowed;
+}
+
+.footerBar {
+  padding: 10px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .bottomPanel {
+    grid-column: auto;
+  }
+  .mathGrid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== Circuit SVG ===== */
+.circuitSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.wire {
+  stroke: #c9d6ff;
+  stroke-width: 2;
+  fill: none;
+}
+
+.wire.thick {
+  stroke-width: 4;
+}
+
+.node {
+  fill: #c9d6ff;
+}
+
+.load {
+  fill: rgba(255, 179, 1, 0.15);
+  stroke: rgba(245, 179, 1, 0.85);
+  stroke-width: 2;
+}
+
+.label {
+  fill: #e7eefc;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+/* NEW: Load label only (brighter + slightly smaller) */
+.loadLabel {
+  fill: rgba(245, 250, 255, 0.92);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+/* ===== Load controls ===== */
+.loadControlCard {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.loadControlHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.loadTitle {
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.faultSelect {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  padding: 6px 10px;
+}
+
+.loadControlRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ohmsBox {
+  width: 88px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  padding: 8px 10px;
+}
+
+.ohmTriangleBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== Data table ===== */
+.tableWrap {
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.dataTable thead th {
+  text-align: left;
+  padding: 8px 10px;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+}
+
+.dataTable tbody td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+/* ===== Circuit visuals ===== */
+.loadGlow {
+  fill: rgba(255, 179, 1, 0.3);
+  stroke: rgba(255, 179, 1, 0.1);
+  stroke-width: 1;
+  filter: blur(0.5px);
+}
+
+.faultBadge {
+  fill: rgba(255, 255, 255, 0.85);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* electrons */
+.electronCircle {
+  fill: rgba(200, 220, 255, 0.95);
+  filter: drop-shadow(0 0 4px rgba(200, 220, 255, 0.35));
+}
